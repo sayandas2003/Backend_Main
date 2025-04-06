@@ -1,0 +1,44 @@
+<%- include("includes/head.ejs") %>
+<body style="font-family: Arial, sans-serif; background-color: #f0f2f5; padding: 50px; display: flex; justify-content: center; align-items: center; height: 100vh;">
+
+  <!-- Profile Container -->
+  <div style="background-color: white; border: 1px solid #ddd; width: 350px; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+    
+    <!-- Name -->
+    <h2 style="text-align: center; color: #333; font-size: 28px; margin-bottom: 10px;">@<%= data.name %></h2>
+
+    <!-- Bio -->
+    <p style="text-align: center; color: #666; font-size: 16px; margin-bottom: 20px;">Just a coder living the dream 💻</p>
+
+    <!-- Stats -->
+    <div style="display: flex; justify-content: space-around; background-color: #fafafa; border: 1px solid #eee; border-radius: 10px; padding: 15px;">
+      <div style="text-align: center;">
+        <strong style="font-size: 18px; color: #222;">@<%= data.posts.length %></strong><br>
+        <span style="font-size: 14px; color: #777;">Posts</span>
+      </div>
+      <div style="text-align: center;">
+        <strong style="font-size: 18px; color: #222;">@<%= data.followers %></strong><br>
+        <span style="font-size: 14px; color: #777;">Followers</span>
+      </div>
+      <div style="text-align: center;">
+        <strong style="font-size: 18px; color: #222;">@<%= data.following %></strong><br>
+        <span style="font-size: 14px; color: #777;">Following</span>
+      </div>
+    </div>
+
+    <!-- Follow Button -->
+    <div style="text-align: center; margin-top: 25px;">
+      <button style="background-color: #0095f6; color: white; border: none; padding: 10px 25px; border-radius: 8px; font-size: 16px; cursor: pointer;">Follow</button>
+    </div>
+  </div>
+</body>
+<hr><hr><hr>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 30px;">
+  <% for(let post of data.posts) { %>
+    <img 
+      src="<%= post.image %>" 
+      alt="image" 
+      style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px; border: 1px solid #ddd;"
+    >
+  <% } %>
+</div>
