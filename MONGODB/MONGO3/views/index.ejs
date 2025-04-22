@@ -19,6 +19,9 @@
             
             <div class="msg">
                 <p>💬 <%= chat.msg %></p>
+                <form action="/chats/<%=chat._id%>/edit" method="GET">
+                    <button>edit</button>
+                </form>
             </div>
 
             <p class="to">✅ Received by: <%= chat.to %></p>
