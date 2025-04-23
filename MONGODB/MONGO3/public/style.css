@@ -1,23 +1,21 @@
-/* Reset some default styles */
 body, h2, p, form {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Body background */
+
 body {
     background: #f0f2f5;
     padding: 20px;
 }
 
-/* Center the container */
+
 .container {
     max-width: 800px;
     margin: auto;
 }
 
-/* Title style */
 .title {
     text-align: center;
     margin-bottom: 20px;
@@ -25,7 +23,7 @@ body {
     color: #333;
 }
 
-/* New Chat Button */
+
 .new-chat-form {
     text-align: center;
     margin-bottom: 30px;
@@ -46,7 +44,6 @@ body {
     background-color: #019875;
 }
 
-/* Chat Card */
 .chat-card {
     background: white;
     border-radius: 10px;
@@ -55,7 +52,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Sender, receiver, time, and date */
 .from, .to, .time, .date {
     margin: 8px 0;
     color: #555;
@@ -104,7 +100,6 @@ body {
 }
 
 
-/* Chat Form Styling */
 .chat-form {
     background: white;
     padding: 25px;
@@ -117,7 +112,6 @@ body {
     gap: 15px;
 }
 
-/* Input and Textarea Fields */
 .input-field {
     padding: 12px;
     font-size: 1rem;
@@ -131,14 +125,12 @@ body {
     outline: none;
 }
 
-/* Textarea specific */
+
 .textarea-field {
     resize: vertical;
     min-height: 100px;
 }
 
-/* Submit Button uses the same .new-chat-btn from before */
-/* Optional: Edit Page Button (slightly different) */
 .edit-btn {
     background-color: #ffc107;
     color: black;
