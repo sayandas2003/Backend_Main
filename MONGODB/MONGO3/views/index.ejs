@@ -8,27 +8,36 @@
 </head>
 <body>
 
-    <h2 class="title">📱 All Chats</h2>
-    <form method="GET" action="/chats/new">
-        <button>New Chat</button>
-    </form>
+    <div class="container">
+        <h2 class="title">📱 All Chats</h2>
 
-    <% for(let chat of chats) { %>
-        <div class="chat">
-            <p class="from">👤 From: <span><%= chat.from %></span></p>
-            
-            <div class="msg">
-                <p>💬 <%= chat.msg %></p>
-                <form action="/chats/<%=chat._id%>/edit" method="GET">
-                    <button>edit</button>
-                </form>
+        <form method="GET" action="/chats/new" class="new-chat-form">
+            <button class="new-chat-btn">➕ New Chat</button>
+        </form>
+
+        <% for(let chat of chats) { %>
+            <div class="chat-card">
+                <p class="from">👤 From: <span><%= chat.from %></span></p>
+                
+                <div class="msg">
+                    <p>💬 <%= chat.msg %></p>
+                    <div class="action-buttons">
+                        <form action="/chats/<%=chat._id%>/edit" method="GET">
+                            <button class="edit-btn">✏️ Edit</button>
+                        </form>
+                        <form action="/chats/<%=chat._id%>?_method=DELETE" method="POST">
+                            <button class="delete-btn">🗑️ Delete</button>
+                        </form>
+                    </div>
+                </div>
+
+                <p class="to">✅ Received by: <%= chat.to %></p>
+                <p class="time"><%= chat.created_at.toString().split(" ")[4] %></p>
+                <p class="date"><%= chat.created_at.toString().split(" ").slice(0,4).join(" ") %></p>
             </div>
+        <% } %>
+    </div>
 
-            <p class="to">✅ Received by: <%= chat.to %></p>
-            <p><%= chat.created_at.toString().split(" ")[4] %></p>
-            <p><%= chat.created_at.toString().split(" ").slice(0,4).join(" ") %></p>
-        </div>
-    <% } %>
-
+    <script src="/app.js"></script>
 </body>
 </html>
