@@ -51,9 +51,11 @@ app.post("/chats", (req, res) => {
     newChat.save()
     .then((res) => {
         console.log(res);
+        // res.redirect("/chats");
     })
     .catch((err) => {
         console.log(err);
+        res.send("Error creating chat");
     })
     res.redirect("/chats");
 })
