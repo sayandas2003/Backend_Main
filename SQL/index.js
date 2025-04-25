@@ -158,6 +158,29 @@ app.patch("/user/:id", (req, res) => {
   }
 })
 
+// New User entry Route -
+app.get("/user/new", (req, res) => {
+  res.render("newuser.ejs");
+})
+
+// New User to (DB) route -
+app.post("/user", (req, res) => {
+  let { username, email, password } = req.body;
+  let id = faker.string.uuid();
+  let q = `INSERT INTO user (id, username, email, password) VALUES (?, ?, ?, ?)`;
+  let values = [id, username, email, password];
+
+  try {
+    connection.query(q, values, (err, result) => {
+      if(err) throw err;
+      res.redirect("/user");
+    })
+  } catch (err) {
+    console.log(err);
+    res.send("some error in DB");
+  }
+});
+
 app.listen("8080", () => {
   console.log("server is listening on port 8080");
 })
