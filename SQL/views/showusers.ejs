@@ -12,9 +12,12 @@
 </head>
 <body>
     <table>
+        <!-- homework - -->
         <form method="GET" action="/user/new">
             <button>Add User</button>
         </form>
+
+
         <tr>
             <th>Id</th>
             <th>Email</th>
@@ -28,6 +31,12 @@
                 <td>
                     <form method="GET" action="/user/<%= user.id %>/edit">
                         <button>Edit Username</button>
+                    </form>
+                </td>
+                <!-- homework -->
+                <td>
+                    <form method="GET" action="/user/<%= user.id %>/delete">
+                        <button>Delete User</button>
                     </form>
                 </td>
             </tr>

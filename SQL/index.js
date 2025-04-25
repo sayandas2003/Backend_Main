@@ -158,6 +158,12 @@ app.patch("/user/:id", (req, res) => {
   }
 })
 
+
+
+
+
+// Home work -
+
 // New User entry Route -
 app.get("/user/new", (req, res) => {
   res.render("newuser.ejs");
@@ -180,6 +186,21 @@ app.post("/user", (req, res) => {
     res.send("some error in DB");
   }
 });
+
+// Delete path -
+app.get("/user/:id/delete", (req, res) => {
+  let {id} = req.params;
+  let q = `DELETE FROM user WHERE id='${id}'`;
+  try {
+    connection.query(q, (err, result) => {
+      if(err) throw err;
+      res.redirect("/user");
+    });
+  } catch(err) {
+      console.log(err);
+      res.send("some error in DB");
+    }
+})
 
 app.listen("8080", () => {
   console.log("server is listening on port 8080");
