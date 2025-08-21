@@ -1,6 +1,6 @@
 const apple = require("./apple");
 const banana = require("./banana");
 
-let fruits = [apple, banana];
+let fruit = [apple, banana];
 
-module.exports = fruits;
+module.exports = fruit;
