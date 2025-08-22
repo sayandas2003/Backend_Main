@@ -24,3 +24,15 @@ app.post("/hi/post", (req, res) => {
     console.log(req.body);
     res.send(`Hello ${req.body.name}, your age is ${req.body.age}`);
 });
+
+
+app.get ("/:username/:id", (req, res) => {
+    let {username , id} = req.params;
+    let htmlstr = `<h1>@${username}</h1>`;
+    res.send(htmlstr);
+})
+
+app.get("/search", (req, res) => {
+    console.log(req.query);
+    res.send("search page");
+})
