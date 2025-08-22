@@ -35,4 +35,4 @@ app.get ("/:username/:id", (req, res) => {
 app.get("/search", (req, res) => {
     console.log(req.query);
     res.send("search page");
-})
+}) 
