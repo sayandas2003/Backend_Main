@@ -43,42 +43,45 @@ app.get("/posts/new", (req, res) => {
     res.render("new.ejs");
 });
 
-// app.post("/posts", (req, res) => {
-//     // console.log(req.body);
-//     // as in post request the data is inside body and in get request data is in parameters
-//     let {username, content} = req.body;
-//     let id = uuidv4();
-//     posts.push({id, username, content});
-//     // res.send("post request working");
-//     res.redirect("/posts");
-// });
+app.post("/posts", (req, res) => {
+    // console.log(req.body);
+    // as in post request the data is inside body and in get request data is in parameters
+    let {username, content} = req.body;
+    let id = uuidv4();
+    posts.push({id, username, content});
+    // res.send("post request working");
+    res.redirect("/posts");
+});
 
-// app.get("/posts/:id", (req, res) => {
-//     let {id} = req.params;
-//     let post = posts.find((p) => id === p.id);
-//     res.render("show.ejs", {post});
-// });
+app.get("/posts/:id", (req, res) => {
+    let {id} = req.params;
+    let post = posts.find((p) => id === p.id);
+    res.render("show.ejs", {post});
+});
 
-// app.patch("/posts/:id", (req, res) => {
-//     let {id} = req.params;
-//     let newContent = req.body.content;
-//     let post = posts.find((p) => id === p.id);
-//     post.content = newContent;
-//     console.log(post);
-//     res.redirect("/posts");
-// });
 
-// app.get("/posts/:id/edit", (req, res) => {
-//     let {id} = req.params;
-//     let post = posts.find((p) => id === p.id);
-//     res.render("edit.ejs", {post});
-// });
 
-// app.delete("/posts/:id", (req, res) => {
-//     let {id} = req.params;
-//     posts = posts.filter((p) => id !== p.id);
-//     res.redirect("/posts");
-// })
+app.get("/posts/:id/edit", (req, res) => {
+    let {id} = req.params;
+    let post = posts.find((p) => id === p.id);
+    res.render("edit.ejs", {post});
+});
+app.patch("/posts/:id", (req, res) => {
+    let {id} = req.params;
+    let newContent = req.body.content;
+    let post = posts.find((p) => id === p.id);
+    post.content = newContent;
+    console.log(post);
+    res.redirect("/posts");
+});
+
+
+
+app.delete("/posts/:id", (req, res) => {
+    let {id} = req.params;
+    posts = posts.filter((p) => id !== p.id);
+    res.redirect("/posts");
+})
 
 
 app.listen(port, ()=> {
