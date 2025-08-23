@@ -1,38 +1,21 @@
 const express = require("express");
 const app = express();
-app.use(express.json());
 
-let port = 3000;
-app.listen(port, () => {
-    console.log("listening on port ",port);
-})
+// for EJS
+app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-    console.log("hi there");
-    res.send("its working bro!");
-})
-
-app.get("/hi", (req, res)=>{
-    res.send("hi is working");
-})
-
-app.get("/hi/there", (req, res)=>{
-    res.send("there is working");
-})
-
-app.post("/hi/post", (req, res) => {
-    console.log(req.body);
-    res.send(`Hello ${req.body.name}, your age is ${req.body.age}`);
+// render frontend form at localhost:3000/form
+app.get("/form", (req, res) => {
+    res.render("form.ejs");   // renders views/form.ejs
 });
 
+// backend route to capture params
+app.get("/register/:user/:id", (req, res) => {
+    let user = req.params.user;
+    let password = req.params.id;
+    res.send("Welcome " + user + ", your password is " + password);
+});
 
-app.get ("/:username/:id", (req, res) => {
-    let {username , id} = req.params;
-    let htmlstr = `<h1>@${username}</h1>`;
-    res.send(htmlstr);
-})
-
-app.get("/search", (req, res) => {
-    console.log(req.query);
-    res.send("search page");
-}) 
+app.listen(3000, () => {
+    console.log("Server running on http://localhost:3000");
+});

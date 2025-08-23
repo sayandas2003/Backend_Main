@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register</title>
+  </head>
+  <body>
+    <h1>Register Form</h1>
+    <form action="/register/<%= user %>/<%= id %>" method="get">
+      <!-- normally you'd take input fields, but here I’m hardcoding for params -->
+       <input type="text" name="user" placeholder="Enter username">
+      <input type="text" name="id" placeholder="Enter ID">
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
