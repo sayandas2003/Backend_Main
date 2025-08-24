@@ -36,9 +36,9 @@ const User = mongoose.model("User", userSchema);
 
 
 // User.insertMany([
-//     {name: "Tony", email: "tony@gmail.com", age: 50},
-//     {name: "Peter", email: "peter@gmail.com", age: 30},
-//     {name: "Bruce", email: "bruce@gmail.com", age: 70}
+//     {name: "sayan", email: "tony@gmail.com", age: 50},
+//     {name: "P", email: "peter@gmail.com", age: 30},
+//     {name: "B", email: "bruce@gmail.com", age: 70}
 // ])
 // .then((res) => {
 //     console.log(res);
@@ -51,7 +51,7 @@ const User = mongoose.model("User", userSchema);
 
 
 
-// User.findById("6804f82187a702fbc856b86f")
+// User.findById("68aa96947df4bd4f6f769073")
 // .then((res) => {
 //     console.log(res.name);
 // })
@@ -63,7 +63,7 @@ const User = mongoose.model("User", userSchema);
 
 
 
-// User.findByIdAndUpdate("6804f82187a702fbc856b86e", {age:40}, {new: true})
+// User.findByIdAndUpdate("68aa96947df4bd4f6f769073", {age:40}, {new: true})
 // .then((res) => {
 //     console.log(res);
 // })
