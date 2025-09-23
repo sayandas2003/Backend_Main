@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const ExpressError = require("./ExpressError");
 
 const path = require("path");
 const Chat = require("./models/chats.js");
@@ -23,7 +24,7 @@ main()
 })
 
 async function main() {
-    await mongoose.connect("mongodb://127.0.0.1:27017/whatsapp");
+    await mongoose.connect("mongodb://127.0.0.1:27017/fakewhatsapp");
 }
 
 
@@ -37,6 +38,7 @@ app.get("/chats", async (req, res) => {
 
 // New Route
 app.get("/chats/new", (req, res) => {
+    throw new ExpressError(404, "page not found");
     res.render("new.ejs");
 })
 
@@ -112,3 +114,26 @@ app.listen(8080, () => {
 // .then((res) => {
 //     console.log(res);
 // })
+
+
+
+
+
+
+// for handling async errors part - 
+
+// error handling middleware - 
+app.use((err, req, res, next) => {
+    let {status = 500, message = "Some Error Occurred"} = err;
+    res.status(status).send(message);
+})
+
+// SHOW ROUTE - 
+app.get("/chats/:id", async(req, res, next) => {
+    let {id} = req.params;
+    let chat = await Chat.findById(id);
+    if(!chat) {
+        throw new ExpressError(404, "Chat not found");
+    }
+    res.render("edit.ejs", {chat});
+});
