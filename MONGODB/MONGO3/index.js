@@ -38,7 +38,7 @@ app.get("/chats", async (req, res) => {
 
 // New Route
 app.get("/chats/new", (req, res) => {
-    throw new ExpressError(404, "page not found");
+    // throw new ExpressError(404, "page not found");
     res.render("new.ejs");
 })
 
@@ -128,12 +128,20 @@ app.use((err, req, res, next) => {
     res.status(status).send(message);
 })
 
+
+// asyncwrap function -
+function asyncWrap(fn) {
+    return function(req, res, next) {
+        fn(req, res, next).catch((err) => next(err));
+    }
+}
+
 // SHOW ROUTE - 
 app.get("/chats/:id", async(req, res, next) => {
     let {id} = req.params;
     let chat = await Chat.findById(id);
     if(!chat) {
-        throw new ExpressError(404, "Chat not found");
+        next(new ExpressError(404, "Chat not found"));
     }
     res.render("edit.ejs", {chat});
 });
