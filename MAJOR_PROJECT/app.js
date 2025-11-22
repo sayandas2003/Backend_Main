@@ -8,7 +8,8 @@ const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const Review = require("./models/review.js");
-const { listingSchema } = require("./schema.js");
+const { listingSchema, reviewSchema } = require("./schema.js");
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -30,27 +31,10 @@ async function main() {
 
 
 
-app.get("/", (req, res) => {
-    res.send("Hi, I am root");
+app.get("/", async(req, res) => {
+    const allListings = await Listing.find({});
+    res.render("listings/index.ejs", {allListings});
 });
-
-
-
-// app.get("/testListing", (req, res) => {
-//     let sampleListing = new Listing({
-//         title: "My New Villa",
-//         description: "By the lake",
-//         price: 1200,
-//         location: "Calangute, Goa",
-//         country: "India",
-//     });
-
-//     sampleListing.save()
-//     .then( (resp) => {
-//         console.log(resp);
-//         res.send("successful testing");
-//     })
-// });
 
 
 const validateListing = (req, res, next) => {
@@ -62,6 +46,17 @@ const validateListing = (req, res, next) => {
         next();
     }
 };
+
+const validateReview = (req, res, next) => {
+    let { error } = reviewSchema.validate(req.body);
+    if(error) {
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    } else {
+        next();
+    }
+};
+
 
 // Index Route -
 app.get("/listings", wrapAsync(async (req, res) => {
@@ -128,7 +123,7 @@ app.delete("/listings/:id", wrapAsync(async(req, res) => {
 
 //Reviews
 //Post Route -
-app.post("/listings/:id/reviews", async(req, res) => {
+app.post("/listings/:id/reviews", validateReview, wrapAsync(async(req, res) => {
     let listing = await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
 
@@ -138,7 +133,7 @@ app.post("/listings/:id/reviews", async(req, res) => {
     await listing.save();
     
     res.redirect(`/listings/${listing.id}`);
-});
+}));
 
 
 
