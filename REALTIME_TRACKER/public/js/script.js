@@ -1,4 +1,3 @@
-
 const socket = io();
 
 // store your real location
@@ -59,7 +58,7 @@ socket.on("receive-location", (data) => {
         return;
     }
 
-    // YOUR REAL MARKER
+    // MY REAL MARKER
     if (myMarker) {
         myMarker.setLatLng([latitude, longitude]);
     } else {
@@ -69,9 +68,9 @@ socket.on("receive-location", (data) => {
     map.setView([latitude, longitude]);
 });
 
-// ------------------------------
+
 // SIMULATE MOVING USER
-// ------------------------------
+
 
 let simulateInterval = null;
 
